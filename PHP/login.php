@@ -10,8 +10,8 @@
 
 <div class="topnav">
   <a class="title" href="./index.html">Main page(Link))</a>
-  <a class="login" href="../PHP/register.php">Register</a>
-  <a class="login" href="login.html">Login</a>
+  <a class="login" href="register.php">Register</a>
+  <a class="login" href="login.php">Login</a>
 </div>
     <div class="about">
       <h2>LOGINPAGE THIS IS LOGIN YOU'VE DONE IT</h2>
