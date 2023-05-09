@@ -158,6 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,11 +182,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <label for="lastname">Last Name:</label>
         <input type="text" id="lastname" name="lastname" value="<?php echo $lastname; ?>">
-            <span><?php echo $lastname_err; ?></span><br>
+        <span><?php echo $lastname_err; ?></span><br>
 
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" value="<?php echo $email; ?>">
-            <span><?php echo $email_err; ?></span><br>
+        <span><?php echo $email_err; ?></span><br>
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" >
