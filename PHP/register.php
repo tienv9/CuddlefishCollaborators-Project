@@ -3,32 +3,33 @@
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$firstname = $lastname = $email = $password = $confirm_password = "";
-$firstname_err = $lastname_err = $email_err = $password_err = $confirm_password_err = "";
+$first_name = $last_name = $email = $password = $confirm_password = "";
+$first_name_err = $last_name_err = $email_err = $password_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    // Validate firstname
-    if(empty(trim($_POST["firstname"]))){
-        $username_err = "Please enter your first name.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["firstname"]))){
-        $username_err = "firstname can only contain letters, numbers, and underscores.";
+    // Validate first_name
+    if(empty(trim($_POST["first_name"]))){
+        $first_name_err = "Please enter your first name.";
+    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["first_name"]))){
+        $first_name_err = "first_name can only contain letters, numbers, and underscores.";
     } else{
         // Prepare a select statement
         $sql = "SELECT first_name FROM users WHERE first_name = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "s", $param_first_name);
 
             // Set parameters
-            $param_username = trim($_POST["firstname"]);
+            $param_first_name = trim($_POST["first_name"]);
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 /* store result */
                 mysqli_stmt_store_result($stmt);
+                $first_name = trim($_POST["first_name"]);
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -38,26 +39,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    // Validate lastname
-    if(empty(trim($_POST["lastname"]))){
-        $username_err = "Please enter your last name.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["lastname"]))){
-        $username_err = "lastname can only contain letters, numbers, and underscores.";
+    // Validate last_name
+    if(empty(trim($_POST["last_name"]))){
+        $last_name_err = "Please enter your last name.";
+    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["last_name"]))){
+        $last_name_err = "last_name can only contain letters, numbers, and underscores.";
     } else{
         // Prepare a select statement
         $sql = "SELECT last_name FROM users WHERE last_name = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "s", $param_last_name);
 
             // Set parameters
-            $param_username = trim($_POST["lastname"]);
+            $param_last_name = trim($_POST["last_name"]);
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 /* store result */
                 mysqli_stmt_store_result($stmt);
+                $last_name = trim($_POST["last_name"]);
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -69,19 +71,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Validate email
     if(empty(trim($_POST["email"]))){
-        $username_err = "Please enter your email.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["email"]))){
-        $username_err = "email can only contain letters, numbers, and underscores.";
+        $email_err = "Please enter your email.";
+    } elseif(!preg_match('/^[_a-z0-9-+]+(\.[_a-z0-9-+]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i', trim($_POST["email"]))){
+        $email_err = "email can only contain letters, numbers, and underscores.";
     } else{
         // Prepare a select statement
         $sql = "SELECT email FROM users WHERE email = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "s", $param_email);
 
             // Set parameters
-            $param_username = trim($_POST["email"]);
+            $param_email = trim($_POST["email"]);
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -126,18 +128,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     // Check input errors before inserting in database
-    if(empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)){
+    if(empty($first_name_err) && empty($last_name_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)){
 
         // Prepare an insert statement
         $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (?,?,?,?)";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_firstname, $param_lastname, $param_email, $param_password);
+            mysqli_stmt_bind_param($stmt, "ssss", $param_first_name, $param_last_name, $param_email, $param_password);
 
             // Set parameters
-            $param_firstname = $firstname;
-            $param_lastname = $lastname;
+            $param_first_name = $first_name;
+            $param_last_name = $last_name;
             $param_email = $email;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
@@ -158,6 +160,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -168,37 +171,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <div class="topnav">
     <a class="title" href="../HTML/index.html">This is a title, but should also be a link to main page</a>
-    <a class="login" href="../HTML/login.html">Login</a>
+    <a class="login" href="login.php">Login</a>
 </div>
 </head>
 <body>
 <div class="register">
-    <form action="register.php" method="post" >
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname"><br>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" >
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="<?php echo $first_name; ?>">
+        <span><?php echo $first_name_err; ?></span><br>
 
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname"><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="<?php echo $last_name; ?>">
+        <span><?php echo $last_name_err; ?></span><br>
 
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email"><br>
+        <input type="text" id="email" name="email" value="<?php echo $email; ?>">
+        <span><?php echo $email_err; ?></span><br>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br>
+        <input type="password" id="password" name="password" >
+        <span><?php echo $password_err; ?></span><br>
 
-        <label for="passcheck">Confirm password:</label>
-        <input type="password" id="passcheck" name="passcheck"><br>
+        <label for="confirm_password">Confirm password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" >
+        <span><?php echo $confirm_password_err; ?></span><br>
 
         <button type="submit">Register</button>
-
-        <script>
-            const checkPasswords = () => {
-                if (document.getElementById('password').value !== document.getElementById('passcheck').value) {
-                    alert('Passwords do not match');
-                    event.preventDefault();
-                }
-            }
-        </script>
 
     </form>
 </div>

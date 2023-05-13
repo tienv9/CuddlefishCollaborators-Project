@@ -4,7 +4,6 @@ if (!empty($_GET['q'])) {
         case 'info':
             phpinfo();
             exit;
-            break;
     }
 }
 ?>
