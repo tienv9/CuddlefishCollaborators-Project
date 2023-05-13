@@ -93,8 +93,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
 <meta name="nav" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../CSS/styles.css">
-</head>
-<body>
 
 <div class="topnav">
   <a class="title" href="../HTML/index.html">This is a title, but should also be a link to main page</a>
