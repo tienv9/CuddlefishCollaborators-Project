@@ -8,8 +8,9 @@ if (!empty($_GET['q'])) {
 }
 ?>
 
-//Create Database
 <?php
+//Create Database
+
 $servername = "localhost";
 $username = "root";
 $password = "FinalProject";
@@ -32,8 +33,9 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-//Create Table Event
 <?php
+//Create Table Event
+
 $servername = "localhost";
 $username = "root";
 $password = "FinalProject";
@@ -58,6 +60,7 @@ $sql = "CREATE TABLE if not exists `event` (
 `location` VARCHAR(255) NOT NULL,
 `capacity` INT NOT NULL,
 `category` ENUM ('wedding', 'family-reunion', 'birthday', 'other') NOT NULL DEFAULT 'wedding',
+`other` VARCHAR(255) NOT NULL,
 `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
@@ -71,8 +74,9 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-//Create Table Users
 <?php
+//Create Table Users
+
 $servername = "localhost";
 $username = "root";
 $password = "FinalProject";
@@ -106,8 +110,10 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-//Create Table Registration
+
 <?php
+//Create Table Registration
+
 $servername = "localhost";
 $username = "root";
 $password = "FinalProject";
@@ -139,8 +145,9 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-//Create Table Categories
 <?php
+//Create Table Categories
+
 $servername = "localhost";
 $username = "root";
 $password = "FinalProject";
@@ -170,8 +177,9 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-//Create Table logs
 <?php
+//Create Table logs
+
 $servername = "localhost";
 $username = "root";
 $password = "FinalProject";
