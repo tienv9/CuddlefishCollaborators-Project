@@ -81,3 +81,22 @@ input[type="text"], input[type="username"], input[type="password"], input[type="
     border: 1px solid #e7e5e5;
     box-sizing: border-box;
 }
+
+table{
+  table-layout: fixed;
+  width:100%;
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+tr,td{
+  padding: 4px;
+  justify-content: left;
+  border-bottom: 1px solid;
+}
+tr:hover{
+  background-color: #D6EEEE;
+}
+.eventInfo{
+  display: inline-table;
+}
