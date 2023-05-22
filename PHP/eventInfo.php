@@ -44,7 +44,10 @@ if (isset($_GET['id']))
     <p>Event Category: <?php echo $event["category"]; ?> </p>
     <p>If Other Category: <?php echo $event["other"]; ?> </p>
 
-    <a href="./eventList.php">Back to Event List</a>
+    <a href="./eventList.php">Back to Event List</a> 
+    <br/>
+    <br/>
+    <a href="./eventRegister.php?id=<?php echo $eventID; ?>">Register for this Event</a>
 </div>
 
 </body>
