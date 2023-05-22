@@ -6,7 +6,7 @@ require_once "config.php";
 
 // Define variables and initialize with empty values
 $title = $description = $event_date = $start_time = $end_time = $location = $capacity = $category = $other = "";
-$title_err = "";
+$title_err = $event_date_err = $start_time_err = $end_time_err = $location_err ="";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -14,8 +14,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate title
     if(empty(trim($_POST["title"]))){
         $title_err = "Please enter your title.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["title"]))){
-        $title_err = "title can only contain letters, numbers, and underscores.";
     } else{
         // Prepare a select statement
         $sql = "SELECT title FROM event WHERE title = ?";
@@ -68,6 +66,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     // Validate event_date
+    if(empty(trim($_POST["event_date"]))){
+        $event_date_err = "Please enter your event_date.";
+    } else{
         // Prepare a select statement
         $sql = "SELECT event_date FROM event WHERE event_date = ?";
         if($stmt = mysqli_prepare($link, $sql)){
@@ -89,9 +90,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
-    
+    }
 
     // Validate start_time
+    if(empty(trim($_POST["start_time"]))){
+        $start_time_err = "Please enter your start_time.";
+    } else{
         // Prepare a select statement
         $sql = "SELECT start_time FROM event WHERE start_time = ?";
         if($stmt = mysqli_prepare($link, $sql)){
@@ -113,9 +117,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
-    
+    }
 
     // Validate end_time
+    if(empty(trim($_POST["end_time"]))){
+        $end_time_err = "Please enter your end_time.";
+    } else{
         // Prepare a select statement
         $sql = "SELECT end_time FROM event WHERE end_time = ?";
         if($stmt = mysqli_prepare($link, $sql)){
@@ -137,9 +144,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
-    
+    }
 
     // Validate location
+    if(empty(trim($_POST["location"]))){
+        $location_err = "Please enter your location.";
+    } else{
         // Prepare a select statement
         $sql = "SELECT location FROM event WHERE location = ?";
         if($stmt = mysqli_prepare($link, $sql)){
@@ -161,7 +171,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
-    
+    }
 
     // Validate capacity
         // Prepare a select statement
@@ -236,7 +246,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
 
     // Check input errors before inserting in database
-    if(empty($title_err)){
+    if(empty($title_err) && empty($event_date_err) && empty($start_time_err) && empty($end_time_err) && empty($location_err)){
+
+        if(empty($capacity)){
+            $capacity = 0;
+        }
+        if(empty($other)){
+            $other = "N/A";
+        }
+        if(empty($description)){
+            $description = "N/A";
+        }
 
         // Prepare an insert statement
         $sql = "INSERT INTO event (organizerid, title, description, event_date, start_time, end_time, location, capacity, category, other) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -262,7 +282,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                header("location: ../HTML/index.html");
+                header("location: ./welcome.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -287,7 +307,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="../CSS/styles.css">
 
 <div class="topnav">
-    <a class="title" href="../HTML/index.html">This is a title, but should also be a link to main page</a>
+    <a class="title" href="./welcome.php">This is a title, but should also be a link to main page</a>
 </div>
 </head>
 <body>
@@ -298,12 +318,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <label for="title">Event Title:</label>
         <input type="text" id="title" name="title" style="width: 600px;"> <br>
+        <span><?php echo $title_err; ?></span><br>
 
         <label for="description">Description:</label> <br>
         <textarea id="description" name="description" rows="5" cols="50"></textarea> <br>
 
         <label for="date">Event Date:</label>
-        <input type="datetime-local" id="event_date" name="event_date">
+        <input type="date" id="event_date" name="event_date">
 
         <label for="start_time">Start Time:</label>
         <input type="datetime-local" id="start_time" name="start_time">
@@ -311,8 +332,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <label for="end_time">End Time:</label>
         <input type="datetime-local" id="end_time" name="end_time"><br>
 
+        <span><?php echo $event_date_err; ?></span><br>
+        <span><?php echo $start_time_err; ?></span><br>
+        <span><?php echo $end_time_err; ?></span><br>
+
+
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" style="width: 600px;"> <br>
+        <span><?php echo $location_err; ?></span><br>
 
         <label for="capacity">Event Capacity:</label>
         <input type="number" step="1" id="capacity" name="capacity" min="0">
@@ -334,3 +361,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </body>
 
 </html>
+
+<style>
+    span {
+        font-weight: bold;
+        color : red;
+    }
+</style>

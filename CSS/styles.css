@@ -91,7 +91,7 @@ table{
 
 tr,td{
   padding: 4px;
-  justify-content: left;
+  justify-content: center;
   border-bottom: 1px solid;
 }
 tr:hover{
@@ -99,4 +99,5 @@ tr:hover{
 }
 .eventInfo{
   display: inline-table;
+  margin: 10px;
 }
