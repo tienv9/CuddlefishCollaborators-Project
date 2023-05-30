@@ -55,8 +55,8 @@ $sql = "CREATE TABLE if not exists `event` (
 `title` VARCHAR(255) NOT NULL,
 `description` TEXT NOT NULL,
 `event_date` DATE NOT NULL,
-`start_time` DATE NOT NULL,
-`end_time` DATE NOT NULL,
+`start_time` DATETIME NOT NULL,
+`end_time` DATETIME NOT NULL,
 `location` VARCHAR(255) NOT NULL,
 `capacity` INT NOT NULL,
 `category` ENUM ('wedding', 'family-reunion', 'birthday', 'other') NOT NULL DEFAULT 'wedding',
@@ -129,8 +129,8 @@ if ($conn->connect_error) {
 // sql to create table
 $sql = "CREATE TABLE if not exists `registration` (
 `id` INT AUTO_INCREMENT PRIMARY KEY,
-`userid` int UNIQUE NOT NULL,
-`eventid` int UNIQUE NOT NULL,
+`userid` INT NOT NULL,
+`eventid` INT NOT NULL,
 `status` ENUM('interested', 'attending', 'not-attending') NOT NULL DEFAULT 'not-attending',
 `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

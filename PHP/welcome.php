@@ -41,7 +41,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <p>we can have like a list of 4-5 location with buttons to open the event here </p>
       </div>
       <div class ="smallsideboxes">        
-        <h2>List of events</h2>
+        <a href="./eventList.php">List of events</a>
         <p>a list of event that is also button that link to the event</p>
       </div>
       <div class ="smallsideboxes">
