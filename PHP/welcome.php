@@ -18,7 +18,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
 
 <div class="topnav">
-  <a class="title" >Welcome to our site <b><?php echo htmlspecialchars($_SESSION["email"]); ?></b> </a>
+  <a class="title" >Welcome to our site <b><?php echo htmlspecialchars($_SESSION["first_name"]); ?></b> </a>
   <a class="login" href="reset-password.php">Reset Your Password</a>
   <a class="login" href="logout.php">Sign Out of Your Account</a>
   <a class="login" href="event.php">Event Creation</a>
