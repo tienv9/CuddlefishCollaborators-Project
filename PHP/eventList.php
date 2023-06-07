@@ -60,6 +60,7 @@
                     echo "<td>" . $row["category"] . "</td>";
                     echo "<td>" . $row["other"] . "</td>";
                     echo "<td><a href='./eventInfo.php?id=" . $row["id"] ."'>Select</a></td>";
+                    echo "<td><a href='./eventRegister.php?id=" . $row["id"] ."'>Register</a></td>";//will need to be fixed
                     echo "</tr>";
                 }
             } else {
@@ -74,6 +75,9 @@
 </html>
 
 <style>
+    tr:hover{
+        background-color: rebeccapurple;
+    }
 th{
   text-align: center;
   padding: 8px;

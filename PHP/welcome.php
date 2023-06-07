@@ -25,14 +25,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
            width= "50"  height= "50" "./Cuttlefishy.png">
       </a
       <a class="title" href="../HTML/index.html">Cuttlefish Events</a>
-      <a class="title" >Welcome to our site <b><?php echo htmlspecialchars($_SESSION["first_name"]); ?></b> </a>
-      <a class="login" href="reset-password.php">Reset Your Password</a>
-      <a class="login" href="logout.php">Sign Out of Your Account</a>
+      <a class="title" >Welcome to our site <b><?php echo htmlspecialchars($_SESSION["email"]); ?></b> </a>
+      <a class="login" href="reset-password.php">Reset Password</a>
+      <a class="login" href="logout.php">Sign Out</a>
       <a class="login" href="event.php">Event Creation</a>
-      <a class="login" href="eventRegister.php">Event Registration</a>
     </div>
   </div>
 </nav>
+
 <img src="../image/346725.jpg" style="height: 200px; width: 100%;" alt="uhhhidk" >
 
 <div style="display: flex;">
