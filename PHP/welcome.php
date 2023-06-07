@@ -57,21 +57,36 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       </div>
       <div class ="smallsideboxes">
         <h2 style = "background-color: #5b2363"><center>Current Events</center></h2>
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
 
-          <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">A simple secondary list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-danger">A simple danger list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-warning">A simple warning list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group item</a>
+        <a href="./eventList.php">List of events</a>
+        <p>a list of event that is also button that link to the event</p>
+<?php
+// Connect to your database
+$servername = "localhost";
+$username = "root";
+$password = "FinalProject";
+$dbname = "CudFishProject";
 
-        <!--<a href="./eventList.php">List of events</a>
-        <p>a list of event that is also button that link to the event</p> -->
-        </div>
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to retrieve data from the event table
+$sql = "SELECT title FROM event";
+$result = $conn->query($sql);
+
+// Display data in the table rows
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td><a href='./eventInfo.php?id=" . $row["title"] ."'>title</a></td>"; // needs to be modified to work correclty to take to event info page and dipaly the event name
+        echo "<tr>";
+    }
+}
+$conn->close();
+        ?>
+
       </div>
       <div class ="smallsideboxes">
         <h2 style = "background-color: #5b2363"><center>Calendar</center></h2>
