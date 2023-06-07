@@ -311,7 +311,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <img alt="Home" src="../HTML/Cuttlefishy.png"
              width= "50"  height= "50" "./Cuttlefishy.png">
     </a>
-    <a class="title" href="../HTML/index.html">Cuttlefish Events</a>
+    <a class="title" href="./welcome.php">Cuttlefish Events</a>
 </nav>
 </head>
 <body>
