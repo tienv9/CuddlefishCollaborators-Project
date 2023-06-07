@@ -306,9 +306,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta name="nav" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../CSS/styles.css">
 
-<div class="topnav">
-    <a class="title" href="./welcome.php">This is a title, but should also be a link to main page</a>
-</div>
+<nav class="topnav">
+    <a class="navbar-brand" href="#">
+        <img alt="Home" src="../HTML/Cuttlefishy.png"
+             width= "50"  height= "50" "./Cuttlefishy.png">
+    </a>
+    <a class="title" href="../HTML/index.html">Cuttlefish Events</a>
+</nav>
 </head>
 <body>
 <div class="register">

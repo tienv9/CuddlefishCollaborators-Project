@@ -94,10 +94,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <meta name="nav" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../CSS/styles.css">
 
-<div class="topnav">
-  <a class="title" href="../HTML/index.html">This is a title, but should also be a link to main page</a>
+<nav class="topnav">
+    <a class="navbar-brand" href="#">
+        <img alt="Home" src="../HTML/Cuttlefishy.png"
+             width= "50"  height= "50" "./Cuttlefishy.png">
+    </a>
+  <a class="title" href="../HTML/index.html">Cuttlefish Events</a>
   <a class="login" href="register.php">Register</a>
-</div>
+</nav>
 </head>
 <body>
 	<div class="register">
@@ -108,7 +112,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 		<label for="password">Password:</label>
 		<input type="password" id="password" name="password" value="<?php echo $password; ?>">
-        <span><?php echo $password_err; ?></span><br>
+        <span class="border-right-1"><?php echo $password_err; ?></span><br>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+            </div>
+        </div>
 
 		<button type="submit">Sign in</button>
 		<span><?php echo $login_err; ?></span>
@@ -116,3 +130,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	</div>
 </body>
 </html>
+
+
