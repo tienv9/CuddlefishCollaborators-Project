@@ -84,6 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </a>
   <a class="title" href="../HTML/index.html">Cuttlefish Events</a>
 </nav>
+</body>
 </head>
 <body>
 	<div class="register">
