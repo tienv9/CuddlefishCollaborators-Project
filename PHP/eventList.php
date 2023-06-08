@@ -5,12 +5,12 @@
     <link rel="stylesheet" href="../CSS/styles.css">
 
     <nav class="topnav">
-        <a class="navbar-brand" href="#">
-            <img alt="Home" src="../HTML/Cuttlefishy.png"
-                 width= "50"  height= "50" "./Cuttlefishy.png">
-        </a>
-        <a class="title" href="./welcome.php">Cuttlefish Events</a>
-    </nav>
+    <a class="navbar-brand" href="#">
+        <img alt="Home" src="../HTML/Cuttlefishy.png" width= "50"  height= "50" href="welcome.php">
+    </a>
+    <a class="title" href="./welcome.php">Cuttlefish Events</a>
+    <a class="login" href="event.php">Event Creation</a>
+</nav>
 </head>
 <body>
     <div>
