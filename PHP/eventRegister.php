@@ -46,12 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <nav class="topnav">
-        <a class="navbar-brand" href="#">
-            <img alt="Home" src="../HTML/Cuttlefishy.png"
-                 width= "50"  height= "50" "./Cuttlefishy.png">
-        </a>
-        <a class="title" href="./welcome.php">Cuttlefish Events</a>
-    </nav>
+    <a class="navbar-brand" href="#">
+        <img alt="Home" src="../HTML/Cuttlefishy.png" width= "50"  height= "50" href="welcome.php">
+    </a>
+    <a class="title" href="./welcome.php">Cuttlefish Events</a>
+</nav>
 </head>
 <body>
 <div class="register">

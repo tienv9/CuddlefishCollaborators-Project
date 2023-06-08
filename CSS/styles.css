@@ -108,11 +108,7 @@ tr,td{
   border-bottom: 1px solid;
 }
 tr:hover{
-<<<<<<< HEAD
-  background-color: rebeccapurple;
-=======
   background-color: #570861;
->>>>>>> main
 }
 .eventInfo{
   display: inline-table;

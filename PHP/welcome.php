@@ -12,6 +12,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <!DOCTYPE html>
 <html lang = eg>
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <meta name="nav" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../CSS/styles.css">
 </head>
@@ -21,16 +22,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-      <img alt="Home" src="../HTML/Cuttlefishy.png"
-           width= "50"  height= "50" "./Cuttlefishy.png">
+      <img alt="Home" src="../HTML/Cuttlefishy.png" width= "50"  height= "50" href="welcome.php" >
       </a
-      <a class="title" href="../HTML/index.html">Cuttlefish Events</a>
-      <a class="title" >Welcome to our site <b><?php echo htmlspecialchars($_SESSION["email"]); ?></b> </a>
+      <a class="title" >Welcome to Cuttlefish Events <b><?php echo htmlspecialchars($_SESSION["email"]); ?></b> </a>
       <a class="login" href="reset-password.php">Reset Password</a>
       <a class="login" href="logout.php">Sign Out</a>
       <a class="login" href="event.php">Event Creation</a>
     </div>
-  </div>
+  </div>  
 </nav>
 
 <img src="../image/346725.jpg" style="height: 200px; width: 100%;" alt="uhhhidk" >
@@ -46,21 +45,25 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h1 style = "background-color: #5b2363"><center>Cuttlefish Events</center></h1>
       </div>
       <div class ="smallsideboxes">
-        <h2 style = "background-color: #5b2363"><center>Location</center></h2>
-        <ul class="list-group">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item">And a fifth one</li>
+        <h2 style = "background-color: #5b2363"><center>Event Type</center></h2>
+        <ul class="list-group" >
+          <li class="list-group-item" style="color: black;">Wedding</li>
+          <li class="list-group-item" style="color: black;">Family reunion</li>
+          <li class="list-group-item" style="color: black;">Birthday</li>
+          <li class="list-group-item" style="color: black;">Other...</li>
         </ul>
       </div>
       <div class ="smallsideboxes">
         <h2 style = "background-color: #5b2363"><center>Current Events</center></h2>
         <div class="list-group">
-
-        <a href="./eventList.php">List of events</a>
-        <p>a list of event that is also button that link to the event</p>
+          <a href="./eventList.php">List of events</a>
+          <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            The current link item
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+          <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+          <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+          <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">A disabled link item</a>
         </div>
       </div>
       <div class ="smallsideboxes">
