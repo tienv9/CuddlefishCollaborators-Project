@@ -58,19 +58,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <div class ="smallsideboxes">
         <h2 style = "background-color: #5b2363"><center>Current Events</center></h2>
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
 
-          <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">A simple secondary list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-danger">A simple danger list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-warning">A simple warning list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group item</a>
-
-        <!--<a href="./eventList.php">List of events</a>
-        <p>a list of event that is also button that link to the event</p> -->
+        <a href="./eventList.php">List of events</a>
+        <p>a list of event that is also button that link to the event</p>
         </div>
       </div>
       <div class ="smallsideboxes">
