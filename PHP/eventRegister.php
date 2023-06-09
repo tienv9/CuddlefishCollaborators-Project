@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result === TRUE) {
-        echo "Registration updated successfully";
+        header("location: welcome.php");
     } else {
         echo "Error updating registration: " . $conn->error;
     }
