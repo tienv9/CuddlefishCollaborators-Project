@@ -8,6 +8,6 @@ Follow these step to access all the features of this website, we will be using l
 5. Goes back to index page or exist the webpage and hit Web button in laragon again to open up the index page
 6. Click on HTML should open up the website, if not hit on index.html within HTML folder
 
--Cookies should save user username and password but won't automatically enter them if you don't hit "Remember Me" 
--It user hit "Remember Me" the website will show different message and title using jquery. 
--The website will automatically log in for the user if they user turn off the website instead of logging out the next time the user hit sign in. 
+-Cookies should save user username and password but won't automatically enter them if you don't hit "Remember Me"     
+-It user hit "Remember Me" the website will show different message and title using jquery.     
+-The website will automatically log in for the user if they user turn off the website instead of logging out the next time the user hit sign in.     
