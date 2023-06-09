@@ -7,6 +7,33 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
+
+// Database connection details
+$servername = "localhost";
+$username = "root";
+$password = "FinalProject";
+$dbname = "CudFishProject";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if email cookie exists
+if (isset($_COOKIE["email"])) {
+    $email = $_COOKIE["email"];
+    $welcomeMessage = "Oh, welcome back, dear user! How I've missed your presence and delightful interactions. 
+                    Your return brings joy and a renewed sense of purpose to this website. 
+                    Our virtual space longs to be filled with your unique personality and contributions. 
+                    You bring life and meaning to every click, every interaction, and every moment spent here. 
+                    Without you, it feels incomplete, like a melody without its harmony. Welcome back, and let us embark 
+                    on this digital journey together once again, for it is your presence that truly makes this website come alive, <b>$email</b>!";
+} else {
+    $welcomeMessage = "Hello stranger, welcome to our CuttleFish website!";
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +89,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <div class="bigsidebox">
                 <h1 style="background-color: #5b2363">
                     <center>Cuttlefish Events</center>
-                </h1>
+                  </h1>
+                  <p><?php echo $welcomeMessage; ?></p>
             </div>
             <div class="smallsideboxes">
                 <h2 style="background-color: #5b2363">
@@ -80,14 +108,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <center>Current Events</center>
                 </h2>
                 <div class="list-group">
-                    <a href="./eventList.php">List of events</a>
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">The current
-                        link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                    <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
-                        aria-disabled="true">A disabled link item</a>
+                    <?php
+                    // Retrieve all event titles from the event table
+                    $sql = "SELECT title FROM event";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        // Output each event title
+                        while ($row = $result->fetch_assoc()) {
+                          echo '<a href="./eventList.php?event=' . $row["title"] . '" class="list-group-item list-group-item-action">' . $row["title"] . '</a>';
+
+                        }
+                    } else {
+                        echo "No events found.";
+                    }
+                    ?>
                 </div>
             </div>
             <div class="smallsideboxes">
