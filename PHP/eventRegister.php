@@ -30,6 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result === TRUE) {
+        // Log the event user status into the logs table
+        $log_action = "Event User Status Updated: Status $status";
+        $log_sql = "INSERT INTO logs (user_id, action) VALUES (?, ?)";
+        if ($log_stmt = mysqli_prepare($link, $log_sql)) {
+            mysqli_stmt_bind_param($log_stmt, "is", $userid, $log_action);
+            mysqli_stmt_execute($log_stmt);
+            mysqli_stmt_close($log_stmt);
+        }
+
         header("location: welcome.php");
     } else {
         echo "Error updating registration: " . $conn->error;

@@ -281,8 +281,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
-                header("location: ./welcome.php");
+                // Log the user event creation action into the logs table
+                $log_action = "User Created an Event: " . $title;
+                $log_user_id = $_SESSION["id"];
+                $log_sql = "INSERT INTO logs (user_id, action) VALUES (?, ?)";
+                if ($log_stmt = mysqli_prepare($link, $log_sql)) {
+                    mysqli_stmt_bind_param($log_stmt, "is", $log_user_id, $log_action);
+                    mysqli_stmt_execute($log_stmt);
+                    mysqli_stmt_close($log_stmt);
+                }
+        
+                // Redirect to the desired page
+                header("location: welcome.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }

@@ -52,6 +52,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
+                // Log the user action of updating the password
+                $log_action = "User updated password to $new_password";
+                $log_user_id = $_SESSION["id"];
+                $log_sql = "INSERT INTO logs (user_id, action) VALUES (?, ?)";
+                if ($log_stmt = mysqli_prepare($link, $log_sql)) {
+                    mysqli_stmt_bind_param($log_stmt, "is", $log_user_id, $log_action);
+                    mysqli_stmt_execute($log_stmt);
+                    mysqli_stmt_close($log_stmt);
+                }
                 // Password updated successfully. Destroy the session, and redirect to login page
                 session_destroy();
                 header("location: login.php");

@@ -78,6 +78,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["id"] = $id;
                             $_SESSION["email"] = $email;
 
+                            // Log the user action into the logs table
+                            $log_action = "User logged in";
+                            $log_user_id = $id;
+
+                            $log_sql = "INSERT INTO logs (user_id, action) VALUES (?, ?)";
+                            if ($log_stmt = mysqli_prepare($link, $log_sql)) {
+                                mysqli_stmt_bind_param($log_stmt, "is", $log_user_id, $log_action);
+                                mysqli_stmt_execute($log_stmt);
+                                mysqli_stmt_close($log_stmt);
+                            }
                             // Redirect user to welcome page
                             header("location: welcome.php");
                         } else {
