@@ -48,7 +48,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// sql to create table
+// sql to create event
 $sql = "CREATE TABLE if not exists `event` (
 `id` INT AUTO_INCREMENT PRIMARY KEY,
 `organizerid` INT NOT NULL,
@@ -126,7 +126,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// sql to create table
+// sql to create registration
 $sql = "CREATE TABLE if not exists `registration` (
 `id` INT AUTO_INCREMENT PRIMARY KEY,
 `userid` INT NOT NULL,
@@ -160,7 +160,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// sql to create table
+// sql to create
 $sql = "CREATE TABLE if not exists `categories` (
 `id` INT AUTO_INCREMENT PRIMARY KEY,
 `name` VARCHAR(50) NOT NULL,
@@ -192,7 +192,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// sql to create table
+// sql to create logs
 $sql = "CREATE TABLE if not exists `logs` (
 `id` INT AUTO_INCREMENT PRIMARY KEY,
 `user_id` INT UNIQUE NOT NULL,
