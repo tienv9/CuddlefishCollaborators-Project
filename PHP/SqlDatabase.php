@@ -194,12 +194,10 @@ if ($conn->connect_error) {
 
 // sql to create table
 $sql = "CREATE TABLE if not exists `logs` (
-`id` INT AUTO_INCREMENT PRIMARY KEY,
-`user_id` INT UNIQUE NOT NULL,
-`event_id` INT AUTO_INCREMENT,
-`action` VARCHAR(255) NOT NULL,
-`action` ENUM('create', 'edit', 'delete') NOT NULL DEFAULT 'create',
-`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT NOT NULL,
+    `action` VARCHAR(255) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )";
 
 if ($conn->query($sql) === TRUE) {

@@ -108,7 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta name="nav" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../CSS/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <nav class="topnav">
         <a class="navbar-brand" href="#">
@@ -143,30 +142,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <span><?php echo $login_err; ?></span>
     </form>
 </div>
-
-<script>
-    // Set the email and password values from the cookies if they exist
-    $(document).ready(function() {
-        if (getCookie("email") !== "") {
-            $("#email").val(getCookie("email"));
-        }
-
-        if (getCookie("password") !== "") {
-            $("#password").val(getCookie("password"));
-        }
-    });
-
-    // Function to get a cookie by name
-    function getCookie(name) {
-        var cookies = document.cookie.split("; ");
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].split("=");
-            if (cookie[0] === name) {
-                return decodeURIComponent(cookie[1]);
-            }
-        }
-        return "";
-    }
-</script>
 </body>
 </html>
